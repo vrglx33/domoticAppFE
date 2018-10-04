@@ -1,0 +1,14 @@
+<form >
+  <div class="imgcontainer">
+    <img src="img_avatar2.png" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" id="uname" [(ngModel)]="model.uname" required [ngModelOptions]="{standalone: true}">
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" id="psw" [(ngModel)]="model.psw" required [ngModelOptions]="{standalone: true}">
+    <button (click)="login()">Login</button>
+  </div>
+</form>

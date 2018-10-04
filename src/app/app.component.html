@@ -1,0 +1,31 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<h1>{{ title }}</h1>
+<button (click)="sensorCreator = !sensorCreator"> {{ sensorCreator ? 'Ir A Inicio' : 'Crear Sensores'}}</button>
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+<div *ngIf="user && !sensorCreator"><agm-map [latitude]="lat"
+         [longitude]="lng"
+         (mapClick)="mapClicked($event)"
+         [disableDefaultUI]="false"
+         [zoomControl]="false" >
+  <agm-marker *ngFor="let home of homes"
+    (markerClick)="clickedMarker(m.label, i)"
+    [latitude]="home.latitude"
+    [longitude]="home.longitude"
+    [markerDraggable]="home.draggable"
+    (dragEnd)="markerDragEnd(m, $event)"
+  >
+    <agm-info-window>
+      <strong>Nombre de la casa : </strong><p>{{home.name}}</p><br>
+      <strong>Owner</strong><p>{{home.owner}}</p><br>
+      <div *ngFor="let sensor of home.sensors"><strong>Sensor: </strong><p>{{sensor.name}}</p></div><br>
+      <button *ngIf="user === 'guest'"> alquilar </button>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>
+<app-home-form
+  *ngIf="user === 'admin'"
+  [coordinates]="coordinates"
+></app-home-form></div>
+<app-login *ngIf="!user"></app-login>
+<app-sensor-house-form *ngIf="sensorCreator"></app-sensor-house-form>

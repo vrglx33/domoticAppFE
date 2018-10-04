@@ -1,0 +1,31 @@
+<div class="container">
+  <h1> Añadir un sensor </h1>
+
+  <div *ngFor="let i of sensors">
+  <form  #heroForm="ngForm"  *ngIf="!submitted">
+
+    <div class="form-group">
+      <label for="name">Sensor</label>
+      <input type="text" [(ngModel)]="model.name" class="form-control" id="name" required [ngModelOptions]="{standalone: true}">
+    </div>
+
+    <div class="form-group">
+      <label for="description">descripcion de sensor</label>
+      <input type="text" class="form-control" [(ngModel)]="model.description" id="description" required [ngModelOptions]="{standalone: true}">
+    </div>
+
+    <div class="form-group">
+      <label for="status">Estado</label>
+      <input type="checkbox" [(ngModel)]="model.status" class="form-control" id="status" required [ngModelOptions]="{standalone: true}">
+    </div>
+
+    <label for="home">Casa</label>
+    <select class="form-control" [(ngModel)]="model.homeId" id="home" [ngModelOptions]="{standalone: true}" required>
+      <option *ngFor="let house of homes"  [value]="house.id" >{{house.name}}</option>
+    </select>
+
+    <button type="submit" (click)="onSubmit()" class="btn btn-success">Submit</button>
+  </form>
+  <p *ngIf="submitted"> Tu sensor Ha sido guardado!</p>
+  </div>
+</div>

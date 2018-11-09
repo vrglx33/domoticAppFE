@@ -10,6 +10,13 @@ import { FormComponent } from './form/form.component';
 import {SensorFormComponent} from './sensorForm/sensorForm.component';
 import {LoginComponent} from "./login/login.component";
 import {SensorHouseFormComponent} from "./sensorhouseform/sensorHouseForm.component";
+import { ImageUploadModule } from "angular2-image-upload";
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: '', component: AppComponent },
+  { path: 'login',   redirectTo: '', pathMatch: 'full' },
+];
 
 @NgModule({
   imports: [
@@ -19,7 +26,9 @@ import {SensorHouseFormComponent} from "./sensorhouseform/sensorHouseForm.compon
     HttpModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCgf8YhUNJstXTQhxJVHHDQ6J2sqWstumI'
-    })
+    }),
+    ImageUploadModule.forRoot(),
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   declarations: [

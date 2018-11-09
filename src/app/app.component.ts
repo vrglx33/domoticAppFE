@@ -1,5 +1,7 @@
+import { Home } from './home';
 import {Component, OnInit} from '@angular/core';
 import {UpdateLocationService} from './services/services';
+import { RouterModule, Routes, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +15,10 @@ export class AppComponent implements OnInit {
     lng: '',
   };
   homes: any = [];
-  user:any;
+  user: any;
   sensorCreator: boolean = false;
-
-  constructor(private uls: UpdateLocationService) { }
+  router: Router;
+  constructor(private uls: UpdateLocationService, router: Router) {  }
   ngOnInit() {
     this.user = localStorage.getItem('login');
     this.uls
@@ -41,5 +43,15 @@ export class AppComponent implements OnInit {
   markerDragEnd(m, $event) {
     this.coordinates = $event.coords;
   }
-
+  logout() {
+    localStorage.clear();
+    this.user = undefined;
+    this.router.navigate(['/login']);
+  }
+  rentIt(home: Home, $event) {
+    home.rent = true;
+    this.uls.updateHome(home).subscribe((response) => {
+      alert("Has Rentado esta casa!");
+  });
+  }
 }

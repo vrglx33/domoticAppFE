@@ -37,7 +37,8 @@
              id="longitude" required
              [ngModelOptions]="{standalone: true}">
     </div>
-
+    <image-upload
+    (uploadFinished)="onUploadFinished($event)"></image-upload>
     <button type="submit"
             (click)="onSubmit()"
             class="btn btn-success">Submit</button>

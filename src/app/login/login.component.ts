@@ -13,8 +13,16 @@ export class LoginComponent {
     uname: '',
     psw: '',
   };
+  registerForm = false;
+
   login() {
     localStorage.setItem('login', this.model.uname);
     window.location.reload();
+  }
+  register() {
+    this.registerForm = true;
+  }
+  registerInactive() {
+    this.registerForm = false;
   }
 }

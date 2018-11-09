@@ -24,15 +24,19 @@ export class UpdateLocationService {
     return this.http
       .get(this.endpoint.homes).pipe(map(res => <any>res.json()));
   }
+  updateHome(home): Observable<any> {
+    return this.http
+      .put(this.endpoint.saveHome + '/' + home.id, home).pipe(map(res => <any>res.json()));
+  }
   getSensorsByHome(): Observable<any> {
     return this.http
       .get(this.endpoint.sensors).pipe(map(res => <any>res.json()));
   }
-  createHome(home: Home): Observable<any>{
+  createHome(home: Home): Observable<any> {
     return this.http
       .post(this.endpoint.saveHome, home).pipe(map(res => <any>res.json()));
   }
-  createSensor(sensor: Sensor): Observable<any>{
+  createSensor(sensor: Sensor): Observable<any> {
     return this.http
       .post(this.endpoint.sensors, sensor).pipe(map(res => <any>res.json()));
   }

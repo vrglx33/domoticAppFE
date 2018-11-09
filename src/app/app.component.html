@@ -1,9 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<h1>{{ title }}</h1>
-<button (click)="sensorCreator = !sensorCreator"> {{ sensorCreator ? 'Ir A Inicio' : 'Crear Sensores'}}</button>
+<div class="header">
+  <a href="#default" class="logo"><img src="/assets/logo.png" /></a>
+  <div class="header-right">
+    <a *ngIf="user" (logout)="logout()"> Logout</a>
+    <a *ngIf="user && user != 'guest'" (click)="sensorCreator = !sensorCreator"> {{ sensorCreator ? 'Ir A Inicio' : 'Crear Sensores'}}</a>
+  </div>
+</div>
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
-<div *ngIf="user && !sensorCreator"><agm-map [latitude]="lat"
+<div *ngIf="user && !sensorCreator"><agm-map 
+         [latitude]="lat"
          [longitude]="lng"
          (mapClick)="mapClicked($event)"
          [disableDefaultUI]="false"
@@ -16,10 +22,11 @@
     (dragEnd)="markerDragEnd(m, $event)"
   >
     <agm-info-window>
+      <img [src]="home.pictureLocation" />
       <strong>Nombre de la casa : </strong><p>{{home.name}}</p><br>
       <strong>Owner</strong><p>{{home.owner}}</p><br>
       <div *ngFor="let sensor of home.sensors"><strong>Sensor: </strong><p>{{sensor.name}}</p></div><br>
-      <button *ngIf="user === 'guest'"> alquilar </button>
+      <button (click)="rentIt(home)" *ngIf="user === 'guest'"> alquilar </button>
     </agm-info-window>
   </agm-marker>
 </agm-map>

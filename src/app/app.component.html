@@ -21,12 +21,17 @@
     [markerDraggable]="home.draggable"
     (dragEnd)="markerDragEnd(m, $event)"
   >
-    <agm-info-window *ngIf="!home.rent" >
-      <img [src]="home.pictureLocation" />
-      <strong>Nombre de la casa : </strong><p>{{home.name}}</p><br>
-      <strong>Owner</strong><p>{{home.owner}}</p><br>
-      <div *ngFor="let sensor of home.sensors"><strong>Sensor: </strong><p>{{sensor.name}}</p></div><br>
-      <button (click)="rentIt(home)" *ngIf="user === 'guest'"> alquilar </button>
+    <agm-info-window  >
+        <div *ngIf="!home.rent" >
+          <img height="30" width="30" [src]="home.pictureLocation" />
+          <strong>Nombre de la casa : </strong><p>{{home.name}}</p><br>
+          <strong>Owner</strong><p>{{home.owner}}</p><br>
+          <div *ngFor="let sensor of home.sensors"><strong>Sensor: </strong><p>{{sensor.name}}</p></div><br>
+          <button (click)="rentIt(home)" *ngIf="user === 'guest'"> alquilar </button>
+        </div>
+        <div *ngIf="home.rent" >
+          Casa Ya Alquilada
+        </div>
     </agm-info-window>
   </agm-marker>
 </agm-map>

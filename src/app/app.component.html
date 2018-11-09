@@ -21,7 +21,7 @@
     [markerDraggable]="home.draggable"
     (dragEnd)="markerDragEnd(m, $event)"
   >
-    <agm-info-window>
+    <agm-info-window *ngIf="!home.rent" >
       <img [src]="home.pictureLocation" />
       <strong>Nombre de la casa : </strong><p>{{home.name}}</p><br>
       <strong>Owner</strong><p>{{home.owner}}</p><br>

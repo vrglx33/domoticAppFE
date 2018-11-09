@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
   rentIt(home: Home, $event) {
     home.rent = true;
     this.uls.updateHome(home).subscribe((response) => {
-      alert("Has Rentado esta casa!");
+      alert('Has Rentado esta casa!');
   });
   }
 }

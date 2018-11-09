@@ -19,6 +19,7 @@ export class SensorFormComponent {
   onSubmit() {
     this.submitted = true;
     this.model.home = this.savedId;
+    this.model.status = false;
     this.uls.createSensor(this.model).subscribe((response) => {
       this.submitted = true;
     }, (error) => {

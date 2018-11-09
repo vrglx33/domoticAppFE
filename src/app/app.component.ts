@@ -27,6 +27,19 @@ export class AppComponent implements OnInit {
             this.homes = data;
         }
       );
+    setInterval(()=>{this.uls
+      .getHomes()
+      .subscribe((data) => {
+            this.homes = data;
+            this.homes.forEach(element => {
+              element.sensors.forEach(sensor => {
+                if (sensor.status) {
+                  alert(sensor.name + " ha sido activado")
+                }
+              });
+            });
+        }
+      );})
   }
 
   mapClicked($event: MouseEvent) {

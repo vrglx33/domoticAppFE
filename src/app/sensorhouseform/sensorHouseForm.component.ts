@@ -16,7 +16,7 @@ export class SensorHouseFormComponent implements OnInit {
   submitted = false;
   numberOfSensors = 1;
   sensors = Array(this.numberOfSensors);
-  model = new Sensor('', '', '', false, new Home('', '', '', '', ''));
+  model = new Sensor('', '', '', false, new Home('', '', '', '', '', false, ''));
   homes: any;
 
   ngOnInit() {
